@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- LOGIN SCREEN -->
+    <div id="loginScreen" class="login">
+        <h2>Admin Dashboard Login</h2>
+
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+
+        <button onclick="login()">Login</button>
+        <p id="loginError"></p>
+
+        <p class="hint">
+            Admin → admin / admin123 <br>
+            Manager → manager / manager123 <br>
+            User → user / user123
+        </p>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div id="dashboard" style="display:none;">
+
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+            <h2 id="panelTitle">Dashboard</h2>
+            <button onclick="logout()">Logout</button>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <div class="main">
+
+            <!-- ANALYTICS -->
+            <div class="cards">
+                <div class="card">Total Users<br><span id="totalUsers"></span></div>
+                <div class="card">Active Users<br><span id="activeUsers"></span></div>
+                <div class="card">Inactive Users<br><span id="inactiveUsers"></span></div>
+            </div>
+
+            <!-- CHART -->
+             <div class="chart-container">
+            <canvas id="userChart"></canvas>
+
+              <!-- ADD USER FORM (ADMIN ONLY) -->
+            <div id="addUserBox" style="display:none;" class="add-user">
+                <h3>Add New Admin / Manager</h3>
+            
+
+                <input type="text" id="newName" placeholder="Full Name">
+                <input type="email" id="newEmail" placeholder="Email">
+                <input type="password" id="newPassword" placeholder="Password">
+
+                <select id="newRole">
+                    <option value="Admin">Admin</option>
+                    <option value="Manager">Manager</option>
+                </select>
+
+                <button onclick="addUser()">Add User</button>
+                <p id="addUserMsg"></p>
+            </div>
+
+            </div>
+
+            <!-- FILTER -->
+            <select id="roleFilter" onchange="filterUsers()">
+                <option value="All">All Roles</option>
+                <option value="Admin">Admin</option>
+                <option value="Manager">Manager</option>
+                <option value="User">User</option>
+            </select>
+          
+
+            <!-- TABLE -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="userTable"></tbody>
+            </table>
+
+            <!-- PAGINATION -->
+            <div class="pagination">
+                <button onclick="prevPage()">Prev</button>
+                <span id="pageNum"></span>
+                <button onclick="nextPage()">Next</button>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
